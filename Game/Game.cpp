@@ -167,7 +167,7 @@ int main(int argc, char** argv)
 	sf::RenderWindow window1(sf::VideoMode(60 + 80 * f.field.size() + 60, 60 + 78 * f.field.size() + 60), "1024");
 	window1.setFramerateLimit(60);
 
-	while (window1.isOpen() && (f.field.size() != 0) && (f.CheckGameOver()))
+	while (window1.isOpen() && (f.field.size() != 0) && (f.CheckGameOver()) && (!f.CheckWin()))
 	{
 		DrawField(window1, f, font, path);
 
