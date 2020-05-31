@@ -119,20 +119,20 @@ int main(int argc, char** argv)
 		text.setString(L"Выберите Уровень Игры");
 		text.setCharacterSize(30);
 		text.setFillColor(sf::Color::Black);
-		text.move(125, 100);
+		text.move(125, 150);
 		window.draw(text);
 
 		text.setString(L"Поле 4 на 4 \nНажмите F4");
-		text.move(110, 90);
+		text.move(-110, 300);
 		window.draw(text);
 
 
 		text.setString(L"Поле 5 на 5 \nНажмите F5");
-		text.move(0, 90);
+		text.move(190, 0);
 		window.draw(text);
 
 		text.setString(L"Поле 6 на 6 \nНажмите F6");
-		text.move(0, 90);
+		text.move(190, 0);
 		window.draw(text);
 
 		while (window.pollEvent(event))
@@ -206,6 +206,40 @@ int main(int argc, char** argv)
 		// Выполняем необходимые действия по отрисовке
 		window1.display();
 		window1.clear();
+	}
+
+	sf::RenderWindow window2(sf::VideoMode(600, 600), "1024");
+	window2.setFramerateLimit(60);
+
+	while ((window2.isOpen()) && (f.CheckWin()))
+	{
+		window2.clear();
+
+		sprite.setPosition(sf::Vector2f(0, 0));
+		sprite.setScale(sf::Vector2f(1.f, 2.f));
+		window2.draw(sprite);
+
+		sf::Text text;
+		text.setFont(font);
+		text.setString(L"Уровень пройден!");
+		text.setCharacterSize(50);
+		text.setFillColor(sf::Color::Black);
+		text.move(135, 150);
+		window2.draw(text);
+
+		while (window2.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window2.close();
+				return 0;
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Escape) window2.close();
+			}
+		}
+		window2.display();
 	}
 
 	return 0;

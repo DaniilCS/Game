@@ -138,5 +138,14 @@ class Field
 			}
 			return false;
 		}
+
+		bool CheckWin() {
+			for (int i = 0; i < field.size(); i++)
+				for (int j = 0; j < field.size(); j++) {
+					if (field[i][j] == 1024)
+						return true;
+				}
+			return false;
+		}
 };
 
