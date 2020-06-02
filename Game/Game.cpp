@@ -85,7 +85,6 @@ int main(int argc, char** argv)
 		}
 	}
 
-	// Создаем окно размером 600 на 600 и частотой обновления 60 кадров в секунду
 	sf::RenderWindow window(sf::VideoMode(600, 600), "1024");
 	window.setFramerateLimit(60);
 
@@ -97,11 +96,11 @@ int main(int argc, char** argv)
 
 	if (!font.loadFromFile(path + "arial.ttf"))
 	{
-		// ошибка...
+		// Error
 	}
 	if (!texture.loadFromFile(path + "MainScr.jpg", sf::IntRect(0, 0, 1200, 1200)))
 	{
-		// ошибка...
+		// Error
 	}
 	sprite.setTexture(texture);
 
@@ -116,23 +115,27 @@ int main(int argc, char** argv)
 
 		sf::Text text;
 		text.setFont(font);
-		text.setString(L"Выберите Уровень Игры");
+		text.setString(L"Chose Field For Game");
 		text.setCharacterSize(30);
 		text.setFillColor(sf::Color::Black);
-		text.move(125, 150);
+		text.move(140, 150);
 		window.draw(text);
 
-		text.setString(L"Поле 4 на 4 \nНажмите F4");
+		text.setString(L"Field 4 x 4 \nPress F4");
 		text.move(-110, 300);
 		window.draw(text);
 
 
-		text.setString(L"Поле 5 на 5 \nНажмите F5");
+		text.setString(L"Field 5 x 5 \nPress F5");
 		text.move(190, 0);
 		window.draw(text);
 
-		text.setString(L"Поле 6 на 6 \nНажмите F6");
+		text.setString(L"Field 6 x 6 \nPress F6");
 		text.move(190, 0);
+		window.draw(text);
+
+		text.setString(L"Press L to Load Level");
+		text.move(-270, 100);
 		window.draw(text);
 
 		while (window.pollEvent(event))
@@ -177,7 +180,6 @@ int main(int argc, char** argv)
 			if (event.type == sf::Event::Closed) window1.close();
 			if (event.type == sf::Event::KeyPressed)
 			{
-				// Получаем нажатую клавишу - выполняем соответствующее действие
 				if (event.key.code == sf::Keyboard::Escape) window1.close();
 				if (event.key.code == sf::Keyboard::Right) {
 					f.PushRight();
@@ -203,7 +205,6 @@ int main(int argc, char** argv)
 			
 		}
 
-		// Выполняем необходимые действия по отрисовке
 		window1.display();
 		window1.clear();
 	}
@@ -221,7 +222,7 @@ int main(int argc, char** argv)
 
 		sf::Text text;
 		text.setFont(font);
-		text.setString(L"Уровень пройден!");
+		text.setString(L"Level Passed!");
 		text.setCharacterSize(50);
 		text.setFillColor(sf::Color::Black);
 		text.move(135, 150);
