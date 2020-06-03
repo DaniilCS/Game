@@ -6,8 +6,15 @@
 
 using namespace std;
 
-/*Draw graffic field with library SFML according to data structure Field.*/
-void DrawField(sf::RenderWindow& window, Field& field, sf::Font& font, string path) {
+/*Summary: Draw graffic field with library SFML according to data structure Field.
+  params:
+           RenderWindow& window - mindow from library sfml, on which draw game field
+		   Field& field - instance of class Field which contains game field
+		   string path - path to the directory with exe file and textures
+
+  return: void
+*/
+void DrawField(sf::RenderWindow& window, Field& field, string path) {
 	for (int j = 0; j < field.field.size(); j++) {
 		for (int i = 0; i < field.field.size(); i++)
 		{
@@ -38,7 +45,13 @@ void DrawField(sf::RenderWindow& window, Field& field, sf::Font& font, string pa
 	}
 }
 
-/*function with saving game field to file*/
+/*Summary: Function with saving game field to file
+  params:
+           Field f - instance of class Field which contains game field
+		   string path - path to the directory with exe file and textures
+
+  return: void
+*/
 void Save(Field& f, string path) {
 	ofstream rec;
 	rec.open(path + "save.txt");//oppening stream
@@ -51,7 +64,14 @@ void Save(Field& f, string path) {
 	rec.close();//close stream
 }
 
-/*function that load cells field from txt file*/
+
+/*Summary:Function that load cells field from txt file
+  params:
+		   Field f - instance of class Field which contains game field
+		   string path - path to the directory with exe file and textures
+
+  return: bool - flag which warns of an error in loading. If true than load success and false if load failed.
+*/
 bool Load(string path, Field& f) {
 	ifstream read(path + "save.txt");//opening stream
 	string line;
@@ -74,6 +94,14 @@ bool Load(string path, Field& f) {
 	return true;// return true, loading is correct
 }
 
+
+/*Summary: The entry point to the program
+  params:
+		   int argc
+		   char** argv
+
+  return: void.
+*/
 int main(int argc, char** argv)
 {
 	/*Search path directory with exe and textures*/
@@ -186,7 +214,7 @@ int main(int argc, char** argv)
 	//open window with game while game is going
 	while (window1.isOpen() && (f.field.size() != 0) && (f.CheckGameOver()) && (!f.CheckWin()))
 	{
-		DrawField(window1, f, font, path);//Draw Field of Game using function DrawField
+		DrawField(window1, f, path);//Draw Field of Game using function DrawField
 
 
 		while (window1.pollEvent(event))
